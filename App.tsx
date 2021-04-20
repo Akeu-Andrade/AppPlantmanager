@@ -1,5 +1,5 @@
 import React from 'react';
-import { Confirmation } from './src/pages/Confirmation';
+import Routes from './src/routes';
 import AppLoading from 'expo-app-loading';
 
 import {
@@ -18,6 +18,6 @@ export default function App(){
     return <AppLoading />
 
   return (
-    <Confirmation />
+    <Routes />
   )
 }
