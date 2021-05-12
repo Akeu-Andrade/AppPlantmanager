@@ -16,23 +16,11 @@ import api from '../service/api';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { useNavigation } from '@react-navigation/core';
+import { PlantProps } from '../assets/libs/storage';
 
 interface EnvironmentsProps{
     key: string;
     title: string;
-}
-
-interface PlantProps{
-    id: string;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: [string];
-    frequency: {
-    times: number;
-    repeat_every: string;
-    }
 }
 
 export function PlantSelect(){
