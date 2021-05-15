@@ -51,7 +51,7 @@ export function UserIdentification(){
             navigation.navigate('Confirmation', {
                 title: 'Prontinho',
                 subtitle: 'Agorvamos começar a cuidar das suas plantinhas com muito cuidado.',
-                button: 'Começar',
+                buttonTitle: 'Começar',
                 icon: 'smile',
                 nextScreen: 'PlantSelect',
             });
