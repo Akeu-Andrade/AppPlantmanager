@@ -4,7 +4,8 @@ import {
     View,
     Text,
     Image,
-    FlatList
+    FlatList,
+    ScrollView
 } from 'react-native'
 import { Header } from '../components/Header';
 
@@ -16,6 +17,7 @@ import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale';       
 import fonts from '../styles/fonts';
 import { PlantCardPrimarySecondary } from '../components/PlantCardPrimarySecondary';
+import { Load } from '../components/load';
 
 export function MyPlants(){
     const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
@@ -42,7 +44,11 @@ export function MyPlants(){
         loadStorageData();
     },[])
 
+    if(loading)
+        return <Load/>
+
     return (
+        
         <View style={styles.container}>
             <Header/>
             <View style={styles.spotlight}>
@@ -59,7 +65,9 @@ export function MyPlants(){
                 <Text style={styles.plantsTitle}>
                     Próximas regadas
                 </Text>
-
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}    
+                >
                 <FlatList 
                     data={myPlants}
                     keyExtractor={(item)=> String(item.id)} 
@@ -68,12 +76,12 @@ export function MyPlants(){
                             data={item}
                         />
                     )}
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{flex: 1}}
+                    contentContainerStyle={{flex: 1}}                    
+
                 />
+                </ScrollView>
             </View>
         </View>
-        
     )
 }
 
