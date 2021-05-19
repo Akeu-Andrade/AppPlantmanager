@@ -65,9 +65,6 @@ export function MyPlants(){
                 <Text style={styles.plantsTitle}>
                     Próximas regadas
                 </Text>
-                <ScrollView 
-                    showsVerticalScrollIndicator={false}    
-                >
                 <FlatList 
                     data={myPlants}
                     keyExtractor={(item)=> String(item.id)} 
@@ -75,11 +72,12 @@ export function MyPlants(){
                         <PlantCardPrimarySecondary 
                             data={item}
                         />
-                    )}
-                    contentContainerStyle={{flex: 1}}                    
-
+                    )}                  
+                    style={{
+                        flex: 1
+                    }}
+                    showsVerticalScrollIndicator={false}
                 />
-                </ScrollView>
             </View>
         </View>
     )
