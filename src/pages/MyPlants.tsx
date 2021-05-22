@@ -5,14 +5,14 @@ import {
     Text,
     Image,
     FlatList,
-    ScrollView
+    Alert
 } from 'react-native'
 import { Header } from '../components/Header';
 
 import waterdrop from '../assets/waterdrop.png';
 
 import colors from '../styles/colors';
-import { PlantProps, loadPlant } from '../assets/libs/storage';
+import { PlantProps, loadPlant, removePlant } from '../assets/libs/storage';
 import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale';       
 import fonts from '../styles/fonts';
@@ -23,6 +23,29 @@ export function MyPlants(){
     const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [nextWaterd, setNextWaterd] = useState<string>();
+
+    function handleRemove(plant: PlantProps){
+        Alert.alert('Remover', `Deseja remover a ${plant.name}?`, [
+            {
+                text: 'Não 🙏',
+                style: 'cancel'
+            },
+            {
+                text: 'Sim 😢',
+                onPress: async () => {
+                    try {
+                        
+                        await removePlant(plant.id)
+                        setMyPlants((oldData) =>
+                            oldData.filter((item) => item.id != plant.id)
+                        ); 
+                    } catch (error) {
+                       console.log(error.message);
+                    }
+                }
+            }
+        ]) 
+    }
 
     useEffect(() => {
         async function loadStorageData() {
@@ -71,6 +94,7 @@ export function MyPlants(){
                     renderItem={({item})=> (
                         <PlantCardPrimarySecondary 
                             data={item}
+                            handleRemove={() => {handleRemove(item)}}
                         />
                     )}                  
                     style={{
