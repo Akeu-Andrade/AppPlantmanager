@@ -74,10 +74,8 @@ $ expo start
 ```
 
 ## 😎 Autor
-
-<a href="https://github.com/Akeu-Andrade/">
- <br />
- <sub><b>Akeu Andrade</b></sub>
+-- <a href="https://github.com/Akeu-Andrade/">
+ Akeu Andrade
 </a>
 
 
